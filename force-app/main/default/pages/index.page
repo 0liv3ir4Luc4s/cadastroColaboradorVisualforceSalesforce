@@ -23,6 +23,22 @@
                 font-family: 'Poppins', sans-serif;
                 font-size: .875rem;
             }
+            .field {
+                position: relative;
+                overflow: hidden;
+            }
+            label::after {
+                pointer-events: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                content: "";
+                border-bottom: .0625rem solid #007aff;
+                transform: translateX(-100%);
+                transition: transform .3s ease;
+            }
             input, ::placeholder {
                 font-family: 'Roboto', sans-serif;
                 font-size: 1.125rem;
@@ -34,6 +50,18 @@
                 border-bottom: .0625rem solid #c8c8c8;
                 background-color: transparent;
                 padding-left: .5rem;
+            }
+            .field:hover label {
+                color: #007aff;
+            }
+            .field:hover label::after{
+                transform: translateX(0%);
+            }
+            input:focus {
+                border-bottom-color: #007aff;
+            }
+            input:not(:focus) {
+                border-bottom-color: #c8c8c8;
             }
         </style>
         <div class="row w-100 h-100 align-items-center">
@@ -48,7 +76,7 @@
                             <apex:form>
                                 <div class="field">
                                     <apex:outputLabel value='{! $ObjectType.Colaborador__c.Fields.Name.Label }'/>
-                                    <apex:inputField value='{! Colaborador__c.Name}' html-placeholder='Nome do colaborador'/>
+                                    <apex:inputField value='{! Colaborador__c.Name }' html-placeholder='Nome do colaborador'/>
                                 </div>
                             </apex:form>
                         </div> 
