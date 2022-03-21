@@ -66,7 +66,7 @@
             .i-valid {
                 color: #34C759;
             }
-            .i-invalid {
+            .i-invalid, .i-required {
                 color: #e74040;
             }
         </style>
@@ -116,6 +116,12 @@
                                         </svg>
                                         <span>Inválido</span>
                                     </div>   
+                                    <div class="i-required d-none">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
+                                        </svg>
+                                        <span>Preencha o CPF, CNPJ ou ambos</span>
+                                    </div>
                                 </div>
                                 <div id='field-cnpj' class="mb-2">
                                    <div class="field">
@@ -134,6 +140,12 @@
                                         </svg>
                                         <span>Inválido</span>
                                     </div>   
+                                    <div class="i-required d-none">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
+                                        </svg>
+                                        <span>Preencha o CPF, CNPJ ou ambos</span>
+                                    </div>
                                 </div>
                                 <apex:commandButton id='submit' action="{! save }" value='cadastrar'/>
                             </apex:form>
@@ -161,22 +173,31 @@
             document.getElementById('{! $Component.theForm.submit }').onclick = (ev) => {
                 document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.name }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
 
-                if ( /\d{3}\.\d{3}\.\d{3}\-\d{2}/g.test(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].value) ) {
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
-                } else {
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
+                if ( !(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].value) && !(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].value) ) {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.remove('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.remove('d-none');
                     ev.preventDefault();
-                }
+                } else {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.add('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.add('d-none');
 
-                if ( /[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/g.test(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].value) ) {
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
-                } else {
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
-                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
-                    ev.preventDefault();
+                    if ( /\d{3}\.\d{3}\.\d{3}\-\d{2}/g.test(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].value) ) {
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
+                    } else if ( document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].value ) {
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cpf }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
+                        ev.preventDefault();
+                    }
+
+                    if ( /[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/g.test(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].value) ) {
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
+                    } else if ( document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].value ) {
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
+                        document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.cnpj }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
+                        ev.preventDefault();
+                    }
                 }
             };
         </script>
