@@ -86,65 +86,93 @@
                                         <apex:outputLabel for='name' value='{! $ObjectType.Colaborador__c.Fields.Name.Label }'/>
                                         <apex:inputField id='name' value='{! Colaborador__c.Name }' html-placeholder='Nome do colaborador'/>
                                     </div>
-                                    <div class="i-valid d-none">
+                                    <div class="i-valid d-flex align-items-center d-none">
                                         <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4.75012 8.12738L1.62262 4.99988L0.557617 6.05738L4.75012 10.2499L13.7501 1.24988L12.6926 0.192383L4.75012 8.12738Z" fill="#34C759"/>
-                                        </svg>
+                                        </svg> 
+                                        &nbsp;
                                         <span>Válido</span>
                                     </div>
-                                    <div class="i-invalid d-none">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
-                                        </svg>
-                                        <span>Inválido</span>
-                                    </div>   
                                 </div> 
                                 <div id='field-cpf' class="mb-2">
                                    <div class="field">
-                                        <apex:outputLabel for='name' value='{! $ObjectType.Colaborador__c.Fields.CPF__c.Label }'/>
+                                        <apex:outputLabel for='cpf' value='{! $ObjectType.Colaborador__c.Fields.CPF__c.Label }'/>
                                         <apex:inputField id='cpf' styleClass="cpf" value='{! Colaborador__c.CPF__c }' html-placeholder='XXX.XXX.XXX-XX' onkeydown="cpfMask()"/>
                                     </div>
-                                    <div class="i-valid d-none">
+                                    <div class="i-valid d-flex align-items-center d-none">
                                         <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4.75012 8.12738L1.62262 4.99988L0.557617 6.05738L4.75012 10.2499L13.7501 1.24988L12.6926 0.192383L4.75012 8.12738Z" fill="#34C759"/>
-                                        </svg>
+                                        </svg> 
+                                        &nbsp;
                                         <span>Válido</span>
                                     </div>
-                                    <div class="i-invalid d-none">
+                                    <div class="i-invalid d-flex align-items-center d-none">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
-                                        </svg>
+                                        </svg> 
+                                        &nbsp;
                                         <span>Inválido</span>
                                     </div>   
                                     <div class="i-required d-none">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
-                                        </svg>
+                                        </svg> 
                                         <span>Preencha o CPF, CNPJ ou ambos</span>
                                     </div>
                                 </div>
+
                                 <div id='field-cnpj' class="mb-2">
                                    <div class="field">
-                                        <apex:outputLabel for='name' value='{! $ObjectType.Colaborador__c.Fields.CNPJ__c.Label }'/>
+                                        <apex:outputLabel for='cnpj' value='{! $ObjectType.Colaborador__c.Fields.CNPJ__c.Label }'/>
                                         <apex:inputField id='cnpj' styleClass="cnpj" value='{! Colaborador__c.CNPJ__c }' html-placeholder='XX.XXX.XXX/XXXX-XX' onkeydown="cnpjMask()"/>
                                     </div>
-                                    <div class="i-valid d-none">
+                                    <div class="i-valid d-flex align-items-center d-none">
                                         <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4.75012 8.12738L1.62262 4.99988L0.557617 6.05738L4.75012 10.2499L13.7501 1.24988L12.6926 0.192383L4.75012 8.12738Z" fill="#34C759"/>
-                                        </svg>
+                                        </svg> 
+                                        &nbsp;
                                         <span>Válido</span>
                                     </div>
-                                    <div class="i-invalid d-none">
+                                    <div class="i-invalid d-flex align-items-center d-none">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
-                                        </svg>
+                                        </svg> 
+                                        &nbsp;
                                         <span>Inválido</span>
                                     </div>   
                                     <div class="i-required d-none">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
-                                        </svg>
+                                        </svg> 
                                         <span>Preencha o CPF, CNPJ ou ambos</span>
+                                    </div>
+                                </div>
+
+                                <div id='field-email' class="mb-2">
+                                    <div class="field">
+                                        <apex:outputLabel for='email' value='{! $ObjectType.Colaborador__c.Fields.Email__c.Label } *'/>
+                                        <apex:inputField id='email' value='{! Colaborador__c.Email__c }' html-placeholder='john.doe@moldsoft.com.br'/>
+                                    </div>
+                                    <div class="i-valid d-flex align-items-center d-none">
+                                        <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.75012 8.12738L1.62262 4.99988L0.557617 6.05738L4.75012 10.2499L13.7501 1.24988L12.6926 0.192383L4.75012 8.12738Z" fill="#34C759"/>
+                                        </svg>
+                                        &nbsp;
+                                        <span>Válido</span>
+                                    </div>
+                                    <div class="i-invalid d-flex align-items-center d-none">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
+                                        </svg> 
+                                        &nbsp;
+                                        <span>Inválido</span>
+                                    </div>   
+                                    <div class="i-required d-flex align-items-center d-none">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
+                                        </svg>
+                                        &nbsp;
+                                        <span>Email é obrigatório</span>
                                     </div>
                                 </div>
                                 <apex:commandButton id='submit' action="{! save }" value='cadastrar'/>
@@ -199,6 +227,22 @@
                         ev.preventDefault();
                     }
                 }
+                    
+                if ( /^\S+@\S+$/g.test(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].value) ) {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
+
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.add('d-none');
+                } else if ( !(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].value) ){
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.remove('d-none');
+                    ev.preventDefault();    
+                } else {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.add('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
+                    ev.preventDefault();
+                }
+
             };
         </script>
 </apex:page>
