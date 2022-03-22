@@ -39,9 +39,9 @@
                 transform: translateX(-100%);
                 transition: transform .3s ease;
             }
-            input, ::placeholder {
+            input, ::placeholder, select {
                 font-family: 'Roboto', sans-serif;
-                font-size: 1.125rem;
+                font-size: 1rem;
             }
             input {
                 width: 100%;
@@ -68,6 +68,34 @@
             }
             .i-invalid, .i-required {
                 color: #e74040;
+            }
+            select {
+                width: 100%;
+                appearance: none;
+                background: transparent;
+                padding: .5rem 0 .5rem .5rem;
+                outline: none;
+                border: none;
+                border-bottom: .0625rem solid #c8c8c8;
+            }
+            .select {
+                display: grid;
+                grid-template-areas: 'select';
+                align-items: center;
+            }
+            .select::after {
+                justify-self: end;
+                content: '';
+                background-color: #242426;
+                width: .70rem;
+                height: .65rem;
+                clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            }
+            select, .select::after {
+                grid-area: select;
+            }
+            select::-ms-expand {
+                display: none;
             }
         </style>
         
@@ -175,6 +203,36 @@
                                         <span>Email é obrigatório</span>
                                     </div>
                                 </div>
+
+                                <div id='field-phone' class="mb-2">
+                                    <div class="field">
+                                        <apex:outputLabel for='phone' value='{! $ObjectType.Colaborador__c.Fields.Telefone__c.Label }'/>
+                                        <apex:inputField id='phone' styleClass="phone" value='{! Colaborador__c.Telefone__c }' html-placeholder='99 99999-9999' onkeydown="phoneMask()"/>
+                                    </div>
+                                    <div class="i-valid d-flex align-items-center d-none">
+                                        <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.75012 8.12738L1.62262 4.99988L0.557617 6.05738L4.75012 10.2499L13.7501 1.24988L12.6926 0.192383L4.75012 8.12738Z" fill="#34C759"/>
+                                        </svg>
+                                        &nbsp;
+                                        <span>Válido</span>
+                                    </div>
+                                    <div class="i-invalid d-flex align-items-center d-none">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.1111 3.12064L13.6787 1.77778L8 7.10159L2.32127 1.77778L0.888885 3.12064L6.56762 8.44445L0.888885 13.7683L2.32127 15.1111L8 9.7873L13.6787 15.1111L15.1111 13.7683L9.43238 8.44445L15.1111 3.12064Z" fill="#E74040"/>
+                                        </svg> 
+                                        &nbsp;
+                                        <span>Inválido</span>
+                                    </div>   
+                                </div>
+
+                                <div id='field-setor-area' class="mb-2">
+                                    <div class="field">
+                                        <apex:outputLabel for='setor-area' value='{! $ObjectType.Colaborador__c.Fields.Setor_rea__c.Label }'/>
+                                        <div class="select">
+                                            <apex:inputField id='setor-area' value='{! Colaborador__c.Setor_rea__c }'/>
+                                        </div>
+                                    </div>
+                                </div>
                                 <apex:commandButton id='submit' action="{! save }" value='cadastrar'/>
                             </apex:form>
                         </div> 
@@ -198,6 +256,12 @@
                 });
             }
 
+            let phoneMask = () => {
+                new Cleave('.phone', {
+                    delimiters: [' ', '-'],
+                    blocks: [2, 5, 4]
+                });
+            }
             document.getElementById('{! $Component.theForm.submit }').onclick = (ev) => {
                 document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.name }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
 
@@ -240,6 +304,15 @@
                     document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-required')[0].classList.add('d-none');
                     document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
                     document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.email }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
+                    ev.preventDefault();
+                }
+
+                if ( !(document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].value) || /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/g.test( document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].value) ) {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.remove('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.add('d-none');
+                } else {
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].parentElement.parentElement.getElementsByClassName('i-valid')[0].classList.add('d-none');
+                    document.getElementById('{! $Component.theForm }').elements['{! $Component.theForm.phone }'].parentElement.parentElement.getElementsByClassName('i-invalid')[0].classList.remove('d-none');
                     ev.preventDefault();
                 }
 
